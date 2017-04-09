@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function($scope) {
+    .controller('MainController', function($scope, postChoiceService) {
 
 $scope.goodreasons=[];
 
@@ -11,6 +11,7 @@ $scope.good= function() {
 };
  $scope.goodreasons.push(reason);
 $scope.reason='';
+console.log(reason);
 };
 
 $scope.evilreasons=[];
@@ -23,4 +24,17 @@ $scope.evil= function() {
   $scope.evilreasons.push(reason);
   $scope.reason='';
 };
+
+$scope.submit= function () {
+
+  postChoiceService.create($scope.goodreasons, $scope.evilreasons).then(function(res) {
+
+                      }, function(err) {});
+
+};
+
+
+
+
+
     });

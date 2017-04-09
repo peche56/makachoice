@@ -32,7 +32,7 @@
             <div class="col-md-1 picto">
                 <div class="form-group">
                     <label for="exampleSelect1">value</label>
-                    <select class="form-control" id="exampleSelect1">
+                    <select class="form-control" id="exampleSelect1" ng-option="value">
                    <option>1</option>
                    <option>2</option>
                    <option>3</option>
@@ -73,5 +73,11 @@
             <li>{{reason.texte}}</li>
           </ul>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-default"ng-click="submit()">submit
+        </button>
+      </div>
     </div>
 </div>
