@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
 
 
-const choiceSchema = new mongoose.Schema({
+const reasonSchema = new mongoose.Schema({
 
-    good: {
+    reason: {
+        title: {
+            type: String
+        },
         text: {
             type: String
         },
@@ -11,40 +14,32 @@ const choiceSchema = new mongoose.Schema({
             type: {
                 Number
             }
-        }
-    },
-    evil: {
-        text: {
-            type: String
         },
-        value: {
+        goodOrBad: {
             type: {
-                Number
+                Boolean
             }
         }
     }
 });
 
-let model = mongoose.model('Choice', choiceSchema);
+let model = mongoose.model('Reason', reasonSchema);
 
-export default class Choice {
-
-
+export default class Reason {
 
     create(req, res) {
         console.log('body', req.body);
         model.create(req.body,
-            (err, choice) => {
-                if (err || !choice) {
+            (err, reason) => {
+                if (err || !reason) {
                     console.log('err', err.message);
                     res.status(500).send(err.message);
                 } else {
                     res.json({
                         success: true,
-                        choice: choice
+                        reason: reason
                     });
                 }
             });
     }
-
 }

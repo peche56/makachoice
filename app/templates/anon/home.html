@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 header">
             <h1>MAKACHOICE</h1>
             <form class="title" ng-submit>
-                <input type="text" ng-model="title">
-                <button type="submit" class="btn btn-default">OK</button>
+                <input class="col-md-10 inpgood" type="text" placeholder="Should I lear how to code ?" ng-model="title">
+                <button type="submit" class="btn okmain">OK</button>
             </form>
         </div>
     </div>
@@ -12,39 +12,34 @@
         <div class="col-md-6 right">
             <h2>Good</h2>
             <form class="subtitlegood" ng-submit>
-                <input type="text" ng-model="subtitlegood">
-                <button type="submit" class="btn btn-default">OK</button>
+                <input class="col-md-10 inpgood" type="text" placeholder="Yep you should lear how to code !" ng-model="subtitlegood">
+                <button type="submit" class="btn okgood">OK</button>
             </form>
         </div>
         <div class="col-md-6 wrong">
             <h2>Evil</h2>
-            <form class="sub-title" ng-submit>
-                <input type="text" ng-model="subtitleevil">
-                  <button type="submit" class="btn btn-default">OK</button>
+            <form class="subtitleevil" ng-submit>
+                <input class="col-md-10 inpevil" type="text" placeholder="Nope keep on chillin'!" ng-model="subtitleevil">
+                <button type="submit" class="btn okevil">OK</button>
             </form>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 choice">
             <div class="col-md-10 txt">
-                <textarea name="name" rows="8" cols="80" ng-model="reason"></textarea>
+                <textarea class="col-md-10 textarea" placeholder="coding is fun" name="name" rows="8" cols="80" ng-model="reason"></textarea>
             </div>
+
             <div class="col-md-1 picto">
                 <div class="form-group">
-                    <label for="exampleSelect1">value</label>
-                    <select class="form-control" id="exampleSelect1" ng-option="value">
-                   <option>1</option>
-                   <option>2</option>
-                   <option>3</option>
-                   <option>4</option>
-                   <option>5</option>
-                 </select>
+                    <input type="number" class="form-control bfh-number" value="0" min="1" max="5" ng-model="value">
                 </div>
+                <p ng-hide="defautval">what is your reason's value ?</p>
             </div>
             <div class="row">
                 <div class="col-md-12 choice">
-                    <button type="button" class="btn btn-default" ng-click="good()">Good</button>
-                    <button type="button" class="btn btn-default" ng-click="evil()">Evil</button>
+                    <button class="col-md-6 goodbtn" type="button" class="btn btn-default" ng-click="good()">Good</button>
+                    <button class="col-md-6 evilbtn" type="button" class="btn btn-default" ng-click="evil()">Evil</button>
                 </div>
             </div>
         </div>
@@ -64,20 +59,36 @@
     </div>
     <div class="row">
         <div class="col-md-6 good-reasons">
-<ul ng-repeat="reason in goodreasons">
-  <li>{{reason.texte}}</li>
-</ul>
+            <div ng-repeat="reason in goodreasons" ng-mouseenter="edit=false" ng-mouseleave="edit=true">
+                <div class="col-md-5">{{reason.texte}}
+                </div>
+                <div class="col-md-1" ng-hide="edit">
+                    <button type="button" class="btn btn-default">edit</button>
+                    <button type="button" class="btn btn-default">delete</button>
+                </div>
+            </div>
         </div>
         <div class="col-md-6 evil-reasons">
-          <ul ng-repeat="reason in evilreasons">
-            <li>{{reason.texte}}</li>
-          </ul>
+            <div ng-repeat="reason in evilreasons" ng-mouseenter="edit=false" ng-mouseleave="edit=true">
+                <div class="col-md-5 goodtxt">{{reason.texte}}
+                </div>
+                <div class="col-md-1" ng-hide="edit">
+                    <button type="button" class="btn btn-default">edit</button>
+                    <button type="button" class="btn btn-default">delete</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-default"ng-click="submit()">submit
+        <div class="col-md-12">
+            <button class="col-xs-12" type="button" class="btn btn-default" ng-click="submit()">submit
         </button>
-      </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p ng-hide="goodResponse">{{subtitlegood}}</p>
+            <p ng-hide="evilResponse">{{subtitleevil}}</p>
+        </div>
     </div>
 </div>
